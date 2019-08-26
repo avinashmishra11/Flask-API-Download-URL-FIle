@@ -1,0 +1,60 @@
+<html>
+<head>
+</head>
+<body>
+<h3> URL Upload </h3>
+<form action = "" method = "POST">
+  <p>URL <input type = "text" name = "url" id="url" /></p>
+  <button type="button" onclick="sendData(this)">Upload URL</button>
+</form>
+<br><br>
+<h3> File Status </h3>
+<form action = "" method = "GET">
+  <p>File ID <input type = "text" name = "id" id="fid"/></p>
+  <button type="button" onclick="sendDataGET(this)">Check Status</button>
+</form>
+<br><br>
+<div id = "result"></div>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://www.json.org/json2.js"></script>
+<script type="text/javascript">
+  function sendData(obj) {
+     var file_url = document.getElementById("url").value; 
+     var fd = {"url" : file_url};
+     var formData = JSON.stringify(fd);
+     var am_res = '';
+     $.ajax({
+         type: "POST",
+         url: "/download",
+         data: formData,
+         success: function (result) {
+              am_res = result
+              if (result.isOk == false) alert(result.message);
+             },
+         async: false,
+         dataType: "json",
+         contentType : "application/json"
+     });
+     document.getElementById("result").innerHTML = JSON.stringify(am_res);
+  }   
+  function sendDataGET(obj) {
+     var file_id = document.getElementById("fid").value; 
+     var am_res = '';
+     $.ajax({
+         type: "GET",
+         url: "/status?id="+file_id,
+         data: {},
+         success: function (result) {
+              am_res = result
+              if (result.isOk == false) alert(result.message);
+             },
+         async: false,
+     });
+     document.getElementById("result").innerHTML = am_res;
+  }   
+</script>
+</body> 
+</html>
+
+
+
