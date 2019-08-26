@@ -106,7 +106,7 @@ class Download(Resource):
         ##Writing URL contents into file in chunks of 1024 and keeping a track of downloaded data
         cnt = 0 
         with open(os.path.join(download_path, filename),"wb") as fw: 
-            for chunk in r.iter_content(chunk_size=1024): 
+            for chunk in r.iter_content(chunk_size=8192): 
                  if chunk:
                     cnt += len(chunk)
                     fw.write(chunk) 
@@ -142,10 +142,10 @@ class Status(Resource):
         config_path =  os.path.join(basepath, "config.ini")
         dbstring = db_api.generate_dbstring(config_path)
         file_status = db_api.get_file_status(file_id, dbstring)
-        rem_size = float(file_status[2]) - float(file_status[3])
         msg = 'File ID Not Exists'
         data_dict = {}
         if file_status: 
+            rem_size = float(file_status[2]) - float(file_status[3])
             msg = 'Success'
             data_dict = {'file_id': str(file_status[0]), 'url': file_status[1], 'upload size': file_status[2], 'downloaded': file_status[3], 'start time': file_status[4], 'user ip': file_status[5], 'end time': file_status[6], 'remaining size': str(rem_size)}
         #Step 3: fetch status of file id
