@@ -61,7 +61,7 @@ $$ How to run $$
 -----------------
 
 * Clone the repo
-* $ cd DownloadAPI
+* $ cd Flask-API-Download-URL-FIle-master
 * Install required packages using --> "pip install -r requirements.txt"
 * open config file <config.ini> and provide mysql details (ip, user, password, database name)
 * database name provided in config file will be used to maintain file download info
