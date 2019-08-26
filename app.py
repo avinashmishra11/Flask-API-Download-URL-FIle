@@ -172,6 +172,5 @@ if __name__=="__main__":
     config_path =  os.path.join(basepath, "config.ini")
     config = ConfigParser.ConfigParser()
     config.read(config_path)
-    app.run(host=config.get('flask', 'host'), port=config.get('flask', 'port'), debug=True)
-    #app.run(host='172.16.20.10', port=11008, debug=True)
+    app.run(host=config.get('flask', 'host'), port=int(config.get('flask', 'port')), debug=True)
 
