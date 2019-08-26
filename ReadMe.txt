@@ -1,6 +1,6 @@
 #Flask restful API for file downloading
 
-Make sure you have MySQL.
+Make sure you have MySQL database and Python version 2.7 and above.
 
 ## Flask Restful API
 A simple Flask Restful API using Flask-restful
@@ -74,5 +74,10 @@ $$ Upload URL $$
 Use any of the below method to upload URL and view result:
 * host the ip:port (ex : http://0.0.0.0:80/) to browser for upload form (upload URL from UI and also check status there)
 * use curl or other techniques to initiate request 
+
+
+Note :: Downloaded files can be find in 'Flask-API-Download-URL-FIle-master/url_file_downloads/' directory.
+
+
 
 

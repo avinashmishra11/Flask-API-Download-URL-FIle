@@ -88,14 +88,14 @@ class Download(Resource):
         """
         ##Creating download directory if not exists
         basedir = os.path.abspath(os.path.dirname(__file__))
-        print basedir
+        #print basedir
         download_path = os.path.join(basedir, 'url_file_downloads/')
         if not os.path.exists(download_path): 
             try:os.makedirs(download_path)
             except:pass
 
         content_length = self.get_content_length(file_url)
-        print 'START :::', content_length
+        #print 'START :::', content_length
         ##Reading URL data in streams
         r = requests.get(file_url, stream = True) 
 
@@ -111,7 +111,7 @@ class Download(Resource):
                     cnt += len(chunk)
                     fw.write(chunk) 
                     db_api.update_batch_mgmt(cnt, dbstring, fid)
-        print 'END :::', cnt
+        #print 'END :::', cnt
         return cnt
 
 
